@@ -27,12 +27,9 @@ public class EmployeeDao implements IEmployeeDao {
     @Override
     public List<Employee> getEmployees() {
         List<Employee> employees = null;
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
+        try (SqlSession session = sqlSessionFactory.openSession();) {
             employees = session
                     .selectList("com.testdev.dao.EmployeeMapper.selectEmployees");
-        } finally {
-            session.close();
         }
         return employees;
     }
@@ -40,58 +37,46 @@ public class EmployeeDao implements IEmployeeDao {
     @Override
     public Employee getEmployeeById(Long employeeId) {
         Employee employee = null;
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
+        try (SqlSession session = sqlSessionFactory.openSession();) {
             employee = session
                     .selectOne("com.testdev.dao.EmployeeMapper.selectEmployee",
                             employeeId);
-        } finally {
-            session.close();
         }
         return employee;
     }
 
     @Override
     public Employee addEmployee(Employee employeeToAdd) {
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
+        try (SqlSession session = sqlSessionFactory.openSession();) {
             session.insert("com.testdev.dao.EmployeeMapper.insertEmployee",
                     employeeToAdd);
             session.commit();
-        } finally {
-            session.close();
         }
         return employeeToAdd;
     }
 
     @Override
     public boolean updateEmployee(Employee employeeToUpdate) {
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
+        try (SqlSession session = sqlSessionFactory.openSession();) {
             session.update("com.testdev.dao.EmployeeMapper.updateEmployee",
                     employeeToUpdate);
             session.commit();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
-        }
+        } 
         return true;
     }
 
     @Override
     public boolean deleteEmployee(Employee employeeToDelete) {
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
+        try (SqlSession session = sqlSessionFactory.openSession();) {
             session.update("com.testdev.dao.EmployeeMapper.deleteEmployee",
                     employeeToDelete);
             session.commit();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }

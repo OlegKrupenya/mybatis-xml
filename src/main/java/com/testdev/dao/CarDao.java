@@ -27,12 +27,9 @@ public class CarDao implements ICarDao {
 	@Override
 	public List<Car> getCars() {
 		List<Car> cars = null;
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
+        try (SqlSession session = sqlSessionFactory.openSession();) {
         	cars = session
                     .selectList("com.testdev.dao.CarMapper.selectCars");
-        } finally {
-            session.close();
         }
         return cars;
 	}
