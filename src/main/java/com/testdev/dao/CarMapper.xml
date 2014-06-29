@@ -8,6 +8,18 @@
 		<id property="carId" column="car_id" />
 		<result property="brandName" column="brand_name" />
 		<result property="model" column="model" />
+		<association property="employee" column="employee_id" javaType="com.testdev.domain.Employee" select="selectEmployee"/>
+	</resultMap>
+	
+	<resultMap id="employeeResultMap" type="com.testdev.domain.Employee">
+		<constructor>
+			<idArg column="employee_id" javaType="long" />
+			<arg column="first_name" javaType="String" />
+		</constructor>
+		<id property="employeeId" column="employee_id" />
+		<result property="firstName" column="first_name" />
+		<result property="lastName" column="last_name" />
+		<result property="age" column="age" />
 	</resultMap>
 
 	<select id="selectCar" resultMap="carResultMap">
@@ -17,5 +29,10 @@
 
 	<select id="selectCars" resultMap="carResultMap">
 		select * from cars
+	</select>
+	
+	<select id="selectEmployee" resultMap="employeeResultMap">
+		select * from employees
+		where employee_id = #{id}
 	</select>
 </mapper>

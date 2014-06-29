@@ -36,7 +36,9 @@ public class App {
 		List<Car> cars = carDao.getCars();
 		for (Car car : cars) {
 			System.out.println("car: " + car.getBrandName() + " "
-					+ car.getModel());
+					+ car.getModel() + " of "
+					+ car.getEmployee().getFirstName() + " "
+					+ car.getEmployee().getLastName());
 		}
 	}
 }
