@@ -7,7 +7,12 @@ import java.util.Properties;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 
 public class ExampleObjectFactory extends DefaultObjectFactory {
-    @SuppressWarnings("unchecked")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2840733397904070763L;
+
+	@SuppressWarnings("unchecked")
     public Object create(@SuppressWarnings("rawtypes") Class type) {
         return super.create(type);
     }
