@@ -22,8 +22,13 @@
 			<result property="model" column="car_model" />
 			<association property="employee" resultMap="EmployeeResult" />
 		</collection>
+		<collection property="companies" ofType="com.testdev.domain.Company">
+			<id property="companyId" column="company_company_id" />
+			<result property="companyName" column="company_company_name" />
+			<result property="city" column="company_city" />
+		</collection>
 	</resultMap>
-	
+
 	<select id="selectEmployee" resultMap="employeeResultMap">
 		select * from employees
 		where employee_id = #{id}
@@ -65,6 +70,24 @@
 		c.model as car_model
 		from employees e
 		left outer join cars c on e.employee_id = c.employee_id
+	</select>
+
+	<select id="selectEmployeesWithCarsAndCompanies" resultMap="EmployeeResult">
+		select e.employee_id as employee_employee_id, e.first_name as
+		employee_first_name, e.last_name as employee_last_name, e.age as
+		employee_age, c.car_id as car_car_id, c.employee_id as
+		car_employee_id,
+		c.brand_name as car_brand_name, c.model as car_model,
+		comp.company_id as
+		company_company_id, comp.company_name as
+		company_company_name, comp.city
+		as company_city from employees e left
+		outer join employee_company co on
+		e.employee_id = co.employee_id left
+		outer join companies comp on
+		comp.company_id = co.company_id left
+		outer join cars c on e.employee_id
+		= c.employee_id
 	</select>
 
 	<insert id="insertEmployee" useGeneratedKeys="true" keyProperty="employeeId">

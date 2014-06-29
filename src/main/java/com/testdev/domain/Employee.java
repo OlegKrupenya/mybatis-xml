@@ -9,7 +9,7 @@ public class Employee implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6343865906863988048L;
+	private static final long serialVersionUID = 1466121286366216735L;
 
 	private Long employeeId;
     
@@ -20,6 +20,8 @@ public class Employee implements Serializable {
     private Short age;
     
     private List<Car> cars;
+    
+    private List<Company> companies;
     
     public Employee() {}
     
@@ -113,5 +115,13 @@ public class Employee implements Serializable {
 	}
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
+	}
+
+	public List<Company> getCompanies() {
+		return companies;
+	}
+
+	public void setCompanies(List<Company> companies) {
+		this.companies = companies;
 	}
 }
