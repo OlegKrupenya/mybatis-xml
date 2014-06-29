@@ -29,7 +29,7 @@ public class EmployeeDao implements IEmployeeDao {
         List<Employee> employees = null;
         try (SqlSession session = sqlSessionFactory.openSession();) {
             employees = session
-                    .selectList("com.testdev.dao.EmployeeMapper.selectEmployees");
+                    .selectList("com.testdev.dao.EmployeeMapper.selectEmployeesWithCars");
         }
         return employees;
     }

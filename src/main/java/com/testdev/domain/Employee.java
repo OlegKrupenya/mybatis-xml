@@ -1,14 +1,15 @@
 package com.testdev.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public class Employee implements Serializable {
     
-    /**
+	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -875331620089699767L;
+	private static final long serialVersionUID = -6343865906863988048L;
 
 	private Long employeeId;
     
@@ -17,6 +18,8 @@ public class Employee implements Serializable {
     private String lastName;
     
     private Short age;
+    
+    private List<Car> cars;
     
     public Employee() {}
     
@@ -97,15 +100,18 @@ public class Employee implements Serializable {
         this.lastName = lastName;
     }
 
-
-
     public Short getAge() {
         return age;
     }
-
-
-
+    
     public void setAge(Short age) {
         this.age = age;
     }
+
+	public List<Car> getCars() {
+		return cars;
+	}
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
 }

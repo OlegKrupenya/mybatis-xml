@@ -7,5 +7,6 @@ create table cars (
 );
 
 insert into cars (employee_id, brand_name, model) values (1, 'Honda', 'Accord');
+insert into cars (employee_id, brand_name, model) values (1, 'Toyota', 'Camry');
 insert into cars (employee_id, brand_name, model) values (2, 'Subaru', 'Impreza WRX STI');
 insert into cars (employee_id, brand_name, model) values (3, 'BMW', '330i');

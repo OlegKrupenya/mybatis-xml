@@ -5,14 +5,22 @@
 <mapper namespace="com.testdev.dao.EmployeeMapper">
 
 	<resultMap id="employeeResultMap" type="com.testdev.domain.Employee">
-		<constructor>
-			<idArg column="employee_id" javaType="long" />
-			<arg column="first_name" javaType="String" />
-		</constructor>
 		<id property="employeeId" column="employee_id" />
 		<result property="firstName" column="first_name" />
 		<result property="lastName" column="last_name" />
 		<result property="age" column="age" />
+	</resultMap>
+
+	<resultMap id="EmployeeResult" type="com.testdev.domain.Employee">
+		<id property="employeeId" column="employee_employee_id" />
+		<result property="firstName" column="employee_first_name" />
+		<result property="lastName" column="employee_last_name" />
+		<result property="age" column="employee_age" />
+		<collection property="cars" ofType="com.testdev.domain.Car">
+			<id property="carId" column="car_car_id" />
+			<result property="brandName" column="car_brand_name" />
+			<result property="model" column="car_model" />
+		</collection>
 	</resultMap>
 
 	<select id="selectEmployee" resultMap="employeeResultMap">
@@ -22,6 +30,40 @@
 
 	<select id="selectEmployees" resultMap="employeeResultMap">
 		select * from employees
+	</select>
+
+	<select id="selectEmployeeWithCars" resultMap="EmployeeResult">
+		select
+		e.employee_id as employee_employee_id,
+		e.first_name as
+		employee_first_name,
+		e.last_name as employee_last_name,
+		e.age as
+		employee_age,
+		c.car_id as car_car_id,
+		c.employee_id as car_employee_id,
+		c.brand_name as car_brand_name,
+		c.model as car_model
+		from employees e
+		left outer join cars c on e.employee_id = c.employee_id
+		where
+		c.employee_id = #{employeeId}
+	</select>
+
+	<select id="selectEmployeesWithCars" resultMap="EmployeeResult">
+		select
+		e.employee_id as employee_employee_id,
+		e.first_name as
+		employee_first_name,
+		e.last_name as employee_last_name,
+		e.age as
+		employee_age,
+		c.car_id as car_car_id,
+		c.employee_id as car_employee_id,
+		c.brand_name as car_brand_name,
+		c.model as car_model
+		from employees e
+		left outer join cars c on e.employee_id = c.employee_id
 	</select>
 
 	<insert id="insertEmployee" useGeneratedKeys="true" keyProperty="employeeId">
