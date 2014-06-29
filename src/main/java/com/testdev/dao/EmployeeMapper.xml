@@ -26,6 +26,7 @@
 			<id property="companyId" column="company_company_id" />
 			<result property="companyName" column="company_company_name" />
 			<result property="city" column="company_city" />
+			<collection property="employees" column="employee_employee_id" select="selectEmployeesWithCarsAndCompanies" />
 		</collection>
 	</resultMap>
 

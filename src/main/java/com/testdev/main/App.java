@@ -12,6 +12,7 @@ import com.testdev.dao.EmployeeDao;
 import com.testdev.dao.ICarDao;
 import com.testdev.dao.IEmployeeDao;
 import com.testdev.domain.Car;
+import com.testdev.domain.Company;
 import com.testdev.domain.Employee;
 
 public class App {
@@ -30,6 +31,9 @@ public class App {
 		List<Employee> employees = employeeDao.getEmployees();
 		for (Employee emp : employees) {
 			System.out.println(emp.getEmployeeId());
+			for (Company company : emp.getCompanies()) {
+				System.out.println("Companies of " + emp.getFirstName() + " " + emp.getLastName() + ": " +  company.getCompanyName());
+			}
 		}
 
 		System.out.println("Cars:");
