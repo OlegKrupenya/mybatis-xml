@@ -21,7 +21,14 @@ public class Employee implements Serializable {
     public Employee() {}
     
 
-    @Override
+    public Employee(Long employeeId, String firstName) {
+		super();
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+	}
+
+
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

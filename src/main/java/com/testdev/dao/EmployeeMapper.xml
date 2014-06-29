@@ -5,6 +5,10 @@
 <mapper namespace="com.testdev.dao.EmployeeMapper">
 
 	<resultMap id="employeeResultMap" type="com.testdev.domain.Employee">
+		<constructor>
+			<idArg column="employee_id" javaType="long" />
+			<arg column="first_name" javaType="String" />
+		</constructor>
 		<id property="employeeId" column="employee_id" />
 		<result property="firstName" column="first_name" />
 		<result property="lastName" column="last_name" />
@@ -35,6 +39,7 @@
 	</update>
 
 	<delete id="deleteEmployee">
-		delete from employees where employee_id = #{employeeId}
+		delete from employees where employee_id =
+		#{employeeId}
 	</delete>
 </mapper>
