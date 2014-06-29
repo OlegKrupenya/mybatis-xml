@@ -34,4 +34,13 @@ public class CarDao implements ICarDao {
         return cars;
 	}
 
+	@Override
+	public Car getCarById(Long carId) {
+		Car car = null;
+		try (SqlSession session = sqlSessionFactory.openSession();) {
+			car = session.selectOne("com.testdev.dao.CarMapper.selectCar", carId);
+		}
+		return car;
+	}
+	
 }

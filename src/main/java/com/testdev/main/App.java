@@ -40,5 +40,9 @@ public class App {
 					+ car.getEmployee().getFirstName() + " "
 					+ car.getEmployee().getLastName());
 		}
+		Car car = carDao.getCarById(1L);
+		System.out.println("selected car: " + car.getBrandName() + " " + car.getModel()
+				+ " of " + car.getEmployee().getFirstName() + " "
+				+ car.getEmployee().getLastName());
 	}
 }
