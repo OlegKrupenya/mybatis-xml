@@ -20,9 +20,10 @@
 			<id property="carId" column="car_car_id" />
 			<result property="brandName" column="car_brand_name" />
 			<result property="model" column="car_model" />
+			<association property="employee" resultMap="EmployeeResult" />
 		</collection>
 	</resultMap>
-
+	
 	<select id="selectEmployee" resultMap="employeeResultMap">
 		select * from employees
 		where employee_id = #{id}
