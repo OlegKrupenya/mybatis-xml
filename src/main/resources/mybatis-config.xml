@@ -43,5 +43,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/testdev/dao/EmployeeMapper.xml" />
+		<mapper resource="com/testdev/dao/CarMapper.xml" />
 	</mappers>
 </configuration>
