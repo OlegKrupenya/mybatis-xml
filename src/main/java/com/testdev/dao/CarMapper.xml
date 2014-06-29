@@ -33,6 +33,6 @@
 	
 	<select id="selectEmployee" resultMap="employeeResultMap">
 		select * from employees
-		where employee_id = #{id}
+		where employee_id = #{employeeId}
 	</select>
 </mapper>
