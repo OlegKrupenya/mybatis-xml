@@ -32,7 +32,8 @@ public class App {
 		for (Employee emp : employees) {
 			System.out.println(emp.getEmployeeId());
 			for (Company company : emp.getCompanies()) {
-				System.out.println("Companies of " + emp.getFirstName() + " " + emp.getLastName() + ": " +  company.getCompanyName());
+				System.out.println("Companies of " + emp.getFirstName() + " "
+						+ emp.getLastName() + ": " + company.getCompanyName());
 			}
 		}
 
@@ -45,9 +46,9 @@ public class App {
 					+ car.getEmployee().getLastName());
 		}
 		Car car = carDao.getCarById(1L);
-		System.out.println("selected car: " + car.getBrandName() + " " + car.getModel()
-				+ " of " + car.getEmployee().getFirstName() + " "
-				+ car.getEmployee().getLastName());
-		
+		System.out.println("selected car: " + car.getBrandName() + " "
+				+ car.getModel() + " of " + car.getEmployee().getFirstName()
+				+ " " + car.getEmployee().getLastName());
+
 	}
 }
