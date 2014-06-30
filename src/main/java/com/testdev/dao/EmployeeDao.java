@@ -1,6 +1,8 @@
 package com.testdev.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -38,9 +40,11 @@ public class EmployeeDao implements IEmployeeDao {
     public Employee getEmployeeById(Long employeeId) {
         Employee employee = null;
         try (SqlSession session = sqlSessionFactory.openSession();) {
+        	Map<String, Object> params = new HashMap<>();
+        	params.put("id", employeeId);
             employee = session
                     .selectOne("com.testdev.dao.EmployeeMapper.selectEmployee",
-                            employeeId);
+                    		params);
         }
         return employee;
     }

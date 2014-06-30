@@ -48,5 +48,6 @@ public class App {
 		System.out.println("selected car: " + car.getBrandName() + " " + car.getModel()
 				+ " of " + car.getEmployee().getFirstName() + " "
 				+ car.getEmployee().getLastName());
+		
 	}
 }
