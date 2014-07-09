@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -30,8 +31,12 @@ public class EmployeeDao implements IEmployeeDao {
     public List<Employee> getEmployees() {
         List<Employee> employees = null;
         try (SqlSession session = sqlSessionFactory.openSession();) {
+            Map<String, Object> params = new HashMap<>();
+            RowBounds rowBounds = new RowBounds(0, 1000);
             employees = session
-                    .selectList("com.testdev.dao.EmployeeMapper.selectEmployeesWithCarsAndCompanies");
+                    .selectList(
+                            "com.testdev.dao.EmployeeMapper.selectEmployeesWithCarsAndCompanies",
+                            params, rowBounds);
         }
         return employees;
     }
@@ -40,11 +45,10 @@ public class EmployeeDao implements IEmployeeDao {
     public Employee getEmployeeById(Long employeeId) {
         Employee employee = null;
         try (SqlSession session = sqlSessionFactory.openSession();) {
-        	Map<String, Object> params = new HashMap<>();
-        	params.put("id", employeeId);
-            employee = session
-                    .selectOne("com.testdev.dao.EmployeeMapper.selectEmployee",
-                    		params);
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", employeeId);
+            employee = session.selectOne(
+                    "com.testdev.dao.EmployeeMapper.selectEmployee", params);
         }
         return employee;
     }
@@ -68,7 +72,7 @@ public class EmployeeDao implements IEmployeeDao {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        } 
+        }
         return true;
     }
 
